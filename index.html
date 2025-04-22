@@ -187,16 +187,24 @@
   </div>
 
   <script>
-    function enterHouse() {
-      document.body.classList.add("show-main");
-      const music = document.getElementById("bg-music");
-      if (music && music.paused) {
-        music.play().catch(err => {
-          console.log("Autoplay blocked:", err);
-        });
-      }
+  function enterHouse() {
+    document.body.classList.add("show-main");
+    const music = document.getElementById("bg-music");
+    const target = document.querySelector(".main-scene");
+
+    // Try playing music
+    if (music && music.paused) {
+      music.play().catch(err => {
+        console.log("Autoplay blocked:", err);
+      });
     }
-  </script>
+
+    // Smooth scroll to message section
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: "smooth" });
+    }, 600); // wait for fade-in transition
+  }
+</script>
 
 </body>
 </html>
